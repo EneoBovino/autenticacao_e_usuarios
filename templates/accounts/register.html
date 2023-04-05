@@ -4,15 +4,16 @@
 
 {% include 'partials/_float_message.html' %}
 
+<!-- Section: Design Block -->
 <section class="">
-
+    <!-- Jumbotron -->
     <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
       <div class="container">
         <div class="row gx-lg-5 align-items-center">
           <div class="col-lg-6 mb-5 mb-lg-0">
             <h1 class="my-5 display-3 fw-bold ls-tight">
-              Seja <br />
-              <span class="text-primary">Bem vindo!</span>
+              Faça seu <br />
+              <span class="text-primary">Cadastro!</span>
             </h1>
             <p style="color: hsl(217, 10%, 50.8%)">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -25,31 +26,28 @@
           <div class="col-lg-6 mb-5 mb-lg-0">
             <div class="card">
               <div class="card-body py-5 px-md-5">
-                  <form action={% url 'login' %} method="POST">
-                    {% csrf_token %}
-                    {% for field in form.visible_fields %}
-                        <div class="form-outline mb-4">
-                            {{ field}}
-                            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-                        </div>
-                    {% endfor %}
+                <form action={% url 'register' %} method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {% for field in form.visible_fields %}
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field}}
+                        {% include 'accounts/partials/_field_error.html' %}
+                      </div>
+                  {% endfor %}
                   <!-- Submit button -->
                   <button type="submit" class="btn btn-primary btn-block mb-4">
-                    Login
+                    Cadastrar
                   </button>
-  
-                    </form>
-                <!-- Register option -->
-                <div class="text">
-                  <p>Se você ainda não tem cadastro <a class="btn-link" href="{% url 'register' %}">Registre-se</a></p>
-                </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
+    <!-- Jumbotron -->
   </section>
+  <!-- Section: Design Block -->
 
 {% endblock content %}
